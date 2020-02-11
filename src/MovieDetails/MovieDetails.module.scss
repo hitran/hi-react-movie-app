@@ -1,0 +1,17 @@
+@import  '../common/common_styling.scss';
+.movieDetails {
+    display: flex;
+    text-align: left;
+    div {
+        margin: 0 10px;
+    }
+    .genres {
+        padding: 5px;
+        border-radius: 5px;
+        display: inline-block;
+        margin: 5px;
+        font-size: 12px;
+        font-weight: normal;
+        color: $black;
+    }
+}

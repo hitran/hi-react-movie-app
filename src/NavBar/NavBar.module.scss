@@ -1,0 +1,14 @@
+@import '../common/common_styling.scss';
+
+.NavBar ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    li {
+        padding: 10px;
+    }
+
+    .changeTheme {
+        @include small_buttons
+    }
+}

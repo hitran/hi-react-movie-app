@@ -1,0 +1,18 @@
+@import '../common/common_styling';
+
+.moviesWrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    box-sizing: border-box;
+    a {
+        height: 400px;
+        border: 1px solid $white;
+        text-decoration: none;
+    }
+}
+.loadMore {
+    @include transparent_button;
+    margin: 20px auto;
+    font-size: 15px;
+}

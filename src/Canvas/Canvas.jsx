@@ -5,7 +5,7 @@ import './Canvas.scss';
 export default function Canvas(props) {
     const dataContext = useContext(DataContext);
     return (
-        <div className={`${dataContext.theme === "dark" ? "Dark" : "Light"}`}>
+        <div className={`Canvas ${dataContext.theme === "dark" ? "Dark" : "Light"}`}>
             {props.children}
         </div>
     )

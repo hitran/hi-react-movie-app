@@ -1,11 +1,8 @@
 import React from 'react';
-import Enzyme, {mount} from 'enzyme';
+import {mount} from 'enzyme';
 import MovieDetails from './MovieDetails';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
 import {BrowserRouter} from 'react-router-dom';
 import {gettingDataTestAttr} from '../TestUtils/TestUtils';
-
-Enzyme.configure({adapter: new EnzymeAdapter()})
 
 const setup = (props = {}, initialEntries) => {
     return mount(<BrowserRouter initialEntries={[...initialEntries]}><MovieDetails {...props} /></BrowserRouter>)

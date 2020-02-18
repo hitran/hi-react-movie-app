@@ -4,8 +4,19 @@
     display: flex;
     list-style-type: none;
     align-items: center;
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    z-index: 2;
     li {
         padding: 10px;
+    }
+
+    a {
+        color: $white;
     }
 
     .changeTheme {

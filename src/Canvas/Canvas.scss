@@ -3,20 +3,22 @@
         text-decoration: none;
     }
 }
-.Dark {
-    background-color: black;
-    transition: 0.5s ease-in-out;
-    color: white;
-    a, p {
+.Canvas {
+    &.Dark {
+        background-color: black;
+        transition: 0.5s ease-in-out;
         color: white;
+        a, p {
+            color: white;
+        }
     }
-}
-
-.Light {
-    background-color: white;
-    transition: 0.5s ease-in-out;
-    color: black;
-    a, p {
+    
+    &.Light {
+        background-color: white;
+        transition: 0.5s ease-in-out;
         color: black;
+        a, p {
+            color: black;
+        }
     }
 }

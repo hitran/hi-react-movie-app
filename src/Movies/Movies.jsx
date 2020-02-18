@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Movies.module.scss';
 import { Link } from 'react-router-dom';
-import Movie from '../Movie/Movie';
+import Movie from './Movie/Movie';
 
 export default function Movies(props) {
     const [currentPage, setCurrentPage] = useState(1)
     let movies = [];
 
     useEffect(() => {
-        props.getMoviesList(props.data, currentPage);
+        if (props.data.length === 0) {
+            props.getMoviesList(props.data, currentPage);
+        }
     },[currentPage])
 
     const onSelectMovie = (movie) => {
@@ -20,7 +22,6 @@ export default function Movies(props) {
 
     if (props.data) {
         const data = [ ...props.data ]
-        console.log(data)
         movies = data.map((movie, i) => (
             <Link to={`/movie/${movie.id}`}>
                 <Movie {...movie} key={i} onClick={() => onSelectMovie(movie)}/>

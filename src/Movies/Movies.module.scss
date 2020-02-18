@@ -2,12 +2,10 @@
 
 .moviesWrapper {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, 200px);
     box-sizing: border-box;
+    justify-content: space-around;
     a {
-        height: 400px;
-        border: 1px solid $white;
         text-decoration: none;
     }
 }

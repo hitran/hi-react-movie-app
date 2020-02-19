@@ -1,28 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './WishList.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faTrash} from "@fortawesome/free-solid-svg-icons";
 
 export default function WishList(props) {
     const data = props.data;
-    let wishList = [
-        <tr>
-            <td>Test 1</td>
-            <td className={styles.desktopOnly}>120 mins</td>
-            <td className={styles.desktopOnly}>8 / 10</td>
-            <td><a>Remove</a></td>
-        </tr>,
-        <tr>
-            <td>Test 2</td>
-            <td className={styles.desktopOnly}>126 mins</td>
-            <td className={styles.desktopOnly}>8 / 10</td>
-            <td><a>Remove</a></td>
-        </tr>,
-        <tr>
-        <td><span>This is a very very very long name just for testing</span></td>
-        <td className={styles.desktopOnly}>126 mins</td>
-        <td className={styles.desktopOnly}>8 / 10</td>
-        <td><a>Remove</a></td>
-    </tr>
-    ]
+    const removeFromWishList = (id) => {
+        if (data.length > 0) {
+            data.splice(id, 1);
+            props.removeFromWishList(data)
+        }
+    }
+    let wishList = [];
     if (data.length > 0) {
         wishList = data.map((movie, id) =>
             (
@@ -30,10 +19,11 @@ export default function WishList(props) {
                     <td>{movie.original_title}</td>
                     <td className={styles.desktopOnly}>{movie.runtime} mins</td>
                     <td className={styles.desktopOnly}>{movie.vote_average} / 10</td>
-                    <td><a>Remove</a></td>
+                    <td><a onClick={() => removeFromWishList(id)}><FontAwesomeIcon icon={faTrash} /></a></td>
                 </tr>
             ))
     }
+
     return (
         wishList.length > 0 ?
             <div className={styles.wishListWrapper}>

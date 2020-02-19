@@ -19,19 +19,10 @@
         transition: 0.1s ease-in-out;
         cursor: pointer;
     }
-    tbody td span{
-        display: inline-block;
-        width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        min-width: 100px;
-    }
     thead th {
         color: $green;
         opacity: 0.8;
     }
-
     .desktopOnly {
         display: none;
     }
@@ -39,9 +30,6 @@
 
 @media screen and (min-width: 500px) {
     .wishListWrapper {
-        tbody td span{
-            width: 100%;
-        }
         .desktopOnly {
             display: table-cell;
         }

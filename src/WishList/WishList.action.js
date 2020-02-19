@@ -24,11 +24,22 @@ const wishListFailAction = (error) => {
 }
 
 export const addToWishList = (data) => {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(wishListRequestAction())
         try {
             dispatch(wishListSuccessAction(data))
         } catch (error){
+            dispatch(wishListFailAction(error))
+        }
+    }
+}
+
+export const removeFromWishList = (data) => {
+    return dispatch => {
+        dispatch(wishListRequestAction())
+        try {
+            dispatch(wishListSuccessAction(data))
+        } catch(error) {
             dispatch(wishListFailAction(error))
         }
     }

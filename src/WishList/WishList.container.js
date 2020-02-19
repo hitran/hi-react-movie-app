@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import WishList from './WishList';
-import {addToWishList} from './WishList.action';
+import {addToWishList, removeFromWishList} from './WishList.action';
 
 
 const mapStateToProps = (store) => ({
@@ -10,7 +10,8 @@ const mapStateToProps = (store) => ({
 })
 
 const mapDispatchToProps = {
-    addToWishList
+    addToWishList,
+    removeFromWishList
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WishList)

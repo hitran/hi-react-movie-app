@@ -7,6 +7,7 @@
     position: relative;
     z-index: 0;
     display:flex;
+    align-items: center;
     &:before {
         content: '';
         position: absolute;
@@ -29,7 +30,6 @@
         z-index: 2;
         > div {
             width: 92%;
-            height: 80%;
         }
     }
     
@@ -54,8 +54,21 @@
                 margin: 10px;
             }
         }
+
+        .detailsHeader {
+            div:first-child {
+                width: 60%;
+            }
+            div:last-child {
+                width: 30%;
+            }
+        }
+        
         .header {
             color: $green;
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            font-weight: lighter;
         }
         .genres {
             padding: 5px;
@@ -72,53 +85,57 @@
             border: 2px solid $green;
             color: $white;
             min-width: 100px;
-            font-size: 20px;
             opacity: 1;
             margin: 10px 0;
-            span {
-                font-size: 15px;
-            }
+            font-size: 15px;
             &:hover {
                 opacity: 0.7;
             }
+            &:disabled {
+                opacity: 0.6;
+                cursor: no-drop;
+            }
         }
     }
 
-}
-
-@media screen and (min-width: 678px) {
-    .movieDetails {
-        align-items: center;
-        > div {
-            flex-direction: row;
-            justify-content: center;
-            max-width: 97%;
-            margin: auto;
-            align-items: center;
-            height: 100%;
-        }
-        .poster, .details {
-            height: 500px;
-        }
-        .poster {
-            margin: 0;
-            width: 40%
-        }
-        .details {
-            margin-top: 0;
-            width: 60%;
-            padding: 20px;
-        }
+    .mobile {
+        display: inline-block;
     }
+
+    .desktop {
+        display: none;
+    }
+
 }
 
 @media screen and (min-width: 892px) {
     .movieDetails {
         > div {
+            flex-direction: row;
             max-width: 950px;
+            justify-content: center;
+            margin: auto;
+            align-items: center;
+            height: 100%;
         } 
+        p {
+            margin-top: 0;
+        }
         .poster, .details {
-            height: 600px;
+            height: 630px;
+        }
+        .details {
+            .header {
+                font-size: 17px;
+            }
+        }
+
+        .desktop {
+            display: inline-block;
+        }
+    
+        .mobile {
+            display: none;
         }
     }
 }

@@ -7,7 +7,8 @@ const mapStateToProps = (store) => ({
     load: store.movieDetailsReducer.load,
     data: store.movieDetailsReducer.data,
     error: store.movieDetailsReducer.error,
-    wishList: store.wishListReducer.data
+    wishList: store.wishListReducer.data,
+    wishListLoad: store.wishListReducer.load
 })
 
 const mapDispatchToProps =  {

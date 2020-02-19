@@ -11,20 +11,18 @@ export default function Movies(props) {
         if (props.data.length === 0) {
             props.getMoviesList(props.data, currentPage);
         }
-    },[currentPage])
+    },[])
 
-    const onSelectMovie = (movie) => {
-
-    }
     const onLoadingMore = () => {
         setCurrentPage(currentPage + 1)
+        props.getMoviesList(props.data, currentPage + 1);
     }
 
     if (props.data) {
         const data = [ ...props.data ]
         movies = data.map((movie, i) => (
             <Link to={`/movie/${movie.id}`}>
-                <Movie {...movie} key={i} onClick={() => onSelectMovie(movie)}/>
+                <Movie {...movie} key={i}/>
             </Link>
         ))
     }

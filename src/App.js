@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from './NavBar/NavBar.jsx';
+import NavBar from './NavBar/NavBar.container';
 import { BrowserRouter } from 'react-router-dom';
 import Router from './Router/Router';
 import Canvas from './Canvas/Canvas';

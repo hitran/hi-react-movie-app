@@ -1,5 +1,49 @@
+@import '../common/common_styling.scss';
+
 .wishListWrapper {
     display: flex;
+    flex-direction: column;
     min-height: 100vh;
     align-items: center;
+    table {
+        width: 80%;
+    }
+    table, th, td {
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+        border-collapse: collapse;
+        padding: 15px;
+        text-align: left;
+    }
+    tbody tr:hover {
+        background-color:rgba(255,255,255,0.1);
+        transition: 0.1s ease-in-out;
+        cursor: pointer;
+    }
+    tbody td span{
+        display: inline-block;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        min-width: 100px;
+    }
+    thead th {
+        color: $green;
+        opacity: 0.8;
+    }
+
+    .desktopOnly {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .wishListWrapper {
+        tbody td span{
+            width: 100%;
+        }
+        .desktopOnly {
+            display: table-cell;
+        }
+    }
 }

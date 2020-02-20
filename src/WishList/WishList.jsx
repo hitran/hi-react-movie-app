@@ -1,9 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from './WishList.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import Search from '../common/Search/Search';
 
 export default function WishList(props) {
+
     const data = props.data;
     const removeFromWishList = (id) => {
         if (data.length > 0) {
@@ -28,6 +30,9 @@ export default function WishList(props) {
         wishList.length > 0 ?
             <div className={styles.wishListWrapper}>
                 <h1 className={styles.title}>WISH LIST</h1>
+                {/* filter */}
+                <Search/>
+                {/* wish list*/}
                 <table>
                     <thead>
                         <tr>

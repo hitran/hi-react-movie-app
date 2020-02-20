@@ -26,6 +26,23 @@
     .desktopOnly {
         display: none;
     }
+    .filter {
+        input {
+            background-color: transparent;
+            color: $white;
+            border: none;
+            padding: 10px;
+            font-size: 15px;
+            &:focus {
+                outline: none;
+            }
+        }
+
+        svg {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+    }
 }
 
 @media screen and (min-width: 500px) {

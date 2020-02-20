@@ -6,15 +6,31 @@ import { faTrash, faSearch } from "@fortawesome/free-solid-svg-icons";
 export default function WishList(props) {
     const [search, setSearch] = useState('')
     const [wishList, setWishList] = useState([]);
-    const data = props.data;
+    const data = [...props.data];
+    const getWishList = (data) => {
+        if (data.length > 0) {
+            let newWishList = data.map((movie, id) =>
+                (
+                    <tr key={id}>
+                        <td>{movie.original_title}</td>
+                        <td className={styles.desktopOnly}>{movie.runtime} mins</td>
+                        <td className={styles.desktopOnly}>{movie.vote_average} / 10</td>
+                        <td><a onClick={() => removeFromWishList(id)}><FontAwesomeIcon icon={faTrash} /></a></td>
+                    </tr>
+                ))
+            setWishList(newWishList);
+        }
+    }
     const removeFromWishList = (id) => {
         if (data.length > 0) {
             data.splice(id, 1);
             props.removeFromWishList(data)
+            console.log(id)
+            console.log(data);
         }
+        getWishList(data)
     }
     const onSearchChange = (e) => {
-        console.log(e.target.value);
         const query = e.target.value;
         setSearch(query);
         const filteredWishList = data.filter(movie => movie.original_title.toLowerCase().includes(query.toLowerCase()));
@@ -40,18 +56,7 @@ export default function WishList(props) {
         setWishList(newWishList);
     }
     useEffect(() => {
-        if (data.length > 0) {
-            let newWishList = data.map((movie, id) =>
-                (
-                    <tr key={id}>
-                        <td>{movie.original_title}</td>
-                        <td className={styles.desktopOnly}>{movie.runtime} mins</td>
-                        <td className={styles.desktopOnly}>{movie.vote_average} / 10</td>
-                        <td><a onClick={() => removeFromWishList(id)}><FontAwesomeIcon icon={faTrash} /></a></td>
-                    </tr>
-                ))
-            setWishList(newWishList);
-        }
+        getWishList(data)
     }, [])
     
 
@@ -60,7 +65,7 @@ export default function WishList(props) {
             <div className={styles.wishListWrapper}>
                 <h1 className={styles.title}>WISH LIST</h1>
                 {/* filter */}
-                <form>
+                <form className={styles.filter}>
                     <FontAwesomeIcon icon={faSearch} />
                     <input type="text" value={search} onChange={onSearchChange} placeholder="Search movie title..." />
                 </form>

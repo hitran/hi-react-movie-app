@@ -8,8 +8,9 @@ export default function WishList(props) {
     const [wishList, setWishList] = useState([]);
     const data = [...props.data];
     const getWishList = (data) => {
+        let newWishList = [];
         if (data.length > 0) {
-            let newWishList = data.map((movie, id) =>
+            newWishList = data.map((movie, id) =>
                 (
                     <tr key={id}>
                         <td>{movie.original_title}</td>
@@ -18,15 +19,13 @@ export default function WishList(props) {
                         <td><a onClick={() => removeFromWishList(id)}><FontAwesomeIcon icon={faTrash} /></a></td>
                     </tr>
                 ))
-            setWishList(newWishList);
         }
+        setWishList(newWishList);
     }
     const removeFromWishList = (id) => {
         if (data.length > 0) {
             data.splice(id, 1);
             props.removeFromWishList(data)
-            console.log(id)
-            console.log(data);
         }
         getWishList(data)
     }
@@ -46,7 +45,7 @@ export default function WishList(props) {
                     </tr>
                 ))
         } else {
-            newWishList.push(<tr>
+            newWishList.push(<tr key="0">
                 <td>No Result Found!</td>
                 <td className={styles.desktopOnly}></td>
                 <td className={styles.desktopOnly}></td>

@@ -21,8 +21,8 @@ export default function Movies(props) {
     if (props.data) {
         const data = [ ...props.data ]
         movies = data.map((movie, i) => (
-            <Link to={`/movie/${movie.id}`}>
-                <Movie {...movie} key={i}/>
+            <Link key={i} to={`/movie/${movie.id}`}>
+                <Movie {...movie} />
             </Link>
         ))
     }

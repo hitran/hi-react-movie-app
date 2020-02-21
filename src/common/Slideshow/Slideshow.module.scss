@@ -1,0 +1,31 @@
+@import '../stylings/common_styling';
+
+.slideshowWrapper {
+    display: flex;
+}
+.moviesWrapper {
+    width: 70%;
+    overflow: hidden;
+    margin: auto;
+    position: relative;
+    height: 300px;
+    > div {
+        display: flex;
+        box-sizing: border-box;
+        justify-content: space-around;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: 0.7s ease-in-out;
+    }
+    a {
+        text-decoration: none;
+        margin: 0 5px;
+    }
+    button {
+        margin: 5px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

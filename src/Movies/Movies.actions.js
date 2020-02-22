@@ -25,13 +25,43 @@ const moviesFailAction = (error) => {
     })
 }
 
-export const getMoviesList = (currentList, page = 1) => {
+export const getPopularMoviesList = (currentList, page = 1) => {
     return async(dispatch) => {
         dispatch(moviesRequestAction())
         try {
             const result = await axios({
                 method: "GET",
                 url: `/movie/popular?${API_KEY}&page=${page}`
+            })
+            dispatch(moviesSuccessAction([...currentList, ...result.data.results]));
+        } catch(error) {
+            dispatch(moviesFailAction(error));
+        }
+    }
+}
+
+export const getLatestMoviesList = (currentList, page = 1) => {
+    return async(dispatch) => {
+        dispatch(moviesRequestAction())
+        try {
+            const result = await axios({
+                method: "GET",
+                url: `/movie/latest?${API_KEY}&page=${page}`
+            })
+            dispatch(moviesSuccessAction([...currentList, ...result.data.results]));
+        } catch(error) {
+            dispatch(moviesFailAction(error));
+        }
+    }
+}
+
+export const getTopRatedMoviesList = (currentList, page = 1) => {
+    return async(dispatch) => {
+        dispatch(moviesRequestAction())
+        try {
+            const result = await axios({
+                method: "GET",
+                url: `/movie/latest?${API_KEY}&page=${page}`
             })
             dispatch(moviesSuccessAction([...currentList, ...result.data.results]));
         } catch(error) {

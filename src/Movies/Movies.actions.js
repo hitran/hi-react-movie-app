@@ -25,47 +25,25 @@ const moviesFailAction = (error) => {
     })
 }
 
-export const getPopularMoviesList = (currentList, page = 1) => {
+export const getMoviesList = (currentData, page = 1) => {
     return async(dispatch) => {
         dispatch(moviesRequestAction())
         try {
-            const result = await axios({
+            const data = {...currentData};
+            const popularResult = await axios({
                 method: "GET",
                 url: `/movie/popular?${API_KEY}&page=${page}`
             })
-            dispatch(moviesSuccessAction([...currentList, ...result.data.results]));
+            const topRatedResult = await axios({
+                method: "GET",
+                url: `/movie/top_rated?${API_KEY}&page=${page}`
+            })
+            data.popularMovies = popularResult.data.results;
+            data.topRatedMovies = topRatedResult.data.results;
+            dispatch(moviesSuccessAction(data));
         } catch(error) {
             dispatch(moviesFailAction(error));
         }
     }
 }
 
-export const getLatestMoviesList = (currentList, page = 1) => {
-    return async(dispatch) => {
-        dispatch(moviesRequestAction())
-        try {
-            const result = await axios({
-                method: "GET",
-                url: `/movie/latest?${API_KEY}&page=${page}`
-            })
-            dispatch(moviesSuccessAction([...currentList, ...result.data.results]));
-        } catch(error) {
-            dispatch(moviesFailAction(error));
-        }
-    }
-}
-
-export const getTopRatedMoviesList = (currentList, page = 1) => {
-    return async(dispatch) => {
-        dispatch(moviesRequestAction())
-        try {
-            const result = await axios({
-                method: "GET",
-                url: `/movie/latest?${API_KEY}&page=${page}`
-            })
-            dispatch(moviesSuccessAction([...currentList, ...result.data.results]));
-        } catch(error) {
-            dispatch(moviesFailAction(error));
-        }
-    }
-}

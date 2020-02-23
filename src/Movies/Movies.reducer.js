@@ -3,7 +3,11 @@ import {MOVIES_REQUEST_ACTION, MOVIES_SUCCESS_ACTION, MOVIES_FAIL_ACTION} from '
 
 const initialState = {
     load: false,
-    data: [],
+    data: {
+        popularMovies: [],
+        topRatedMovies: []
+        
+    },
     error: null
 }
 

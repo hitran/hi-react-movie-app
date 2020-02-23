@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Movies from './Movies';
-import {getPopularMoviesList, getLatestMoviesList, getTopRatedMoviesList} from './Movies.actions';
+import {getMoviesList} from './Movies.actions';
 
 
 const mapStateToProps = (store) => ({
@@ -10,9 +10,8 @@ const mapStateToProps = (store) => ({
 })
 
 const mapDispatchToProps = {
-    getPopularMoviesList,
-    getLatestMoviesList,
-    getTopRatedMoviesList
+    getMoviesList
+    
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies)

@@ -33,6 +33,12 @@ const NavBar = (props) => {
                         <NavLink to="/">Popular</NavLink>
                     </li>
                     <li>
+                        <NavLink to="/">Latest</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/">Top Rated</NavLink>
+                    </li>
+                    <li>
                         <NavLink to="/my-wish-list">My Wish List
                         <span className={props.data.length > 0 ? styles.notification : ''}>{props.data.length > 0 ? props.data.length : null}</span></NavLink>
                     </li>

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import styles from './Search.module.scss';
 
 export default function Search(props){
     const [search, setSearch] = useState('')
@@ -12,9 +13,9 @@ export default function Search(props){
         }
     }
     return (
-        <form>
+        <form className={styles.search}>
             <FontAwesomeIcon icon={faSearch}/>
-            <input type="text" value={search} onChange={onSearchChange}/>
+            <input type="text" value={search} onChange={onSearchChange} placeholder="search movie title..."/>
         </form>
     )
 }

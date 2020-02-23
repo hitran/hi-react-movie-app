@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.scss';
 import { DataContext } from '../Context/Context';
+import Search from '../common/Search/Search';
 const NavBar = (props) => {
     const [isScrolling, setIsScrolling] = useState(false);
     const dataContext = useContext(DataContext)
@@ -33,9 +34,6 @@ const NavBar = (props) => {
                         <NavLink to="/">Popular</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/">Latest</NavLink>
-                    </li>
-                    <li>
                         <NavLink to="/">Top Rated</NavLink>
                     </li>
                     <li>
@@ -43,6 +41,11 @@ const NavBar = (props) => {
                         <span className={props.data.length > 0 ? styles.notification : ''}>{props.data.length > 0 ? props.data.length : null}</span></NavLink>
                     </li>
                     <li><button className={styles.changeTheme} onClick={onChangeTheme}>Change Theme</button></li>
+                </ul>
+                <ul className={styles.pullRight}>
+                    <li>
+                        <Search />
+                    </li>
                 </ul>
             </div>
         </div>

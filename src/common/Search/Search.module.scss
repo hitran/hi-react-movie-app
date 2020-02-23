@@ -1,0 +1,16 @@
+@import '../stylings/common_styling.scss';
+.search {
+    svg {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    input {
+        background-color: transparent;
+        color: $white;
+        border: none;
+        padding: 10px;
+        font-size: 15px;
+        &:focus {
+            outline: none;
+        }
+    }
+}

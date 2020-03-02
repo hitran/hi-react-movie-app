@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import moviesReducer from './Movies/Movies.reducer';
 import movieDetailsReducer from './MovieDetails/MovieDetails.reducer';
 import wishListReducer from './WishList/WishList.reducer';
+import searchReducer from './Search/Search.reducer';
 
 const reducers = combineReducers({
     moviesReducer,
     movieDetailsReducer,
-    wishListReducer
+    wishListReducer,
+    searchReducer
 })
 export const store = createStore(reducers, compose(
     applyMiddleware(thunk),

@@ -22,7 +22,6 @@ export default function Slideshow(props) {
         } else {
             setLeftPosition(newPos - 700)
         }
-
     }
     return (
         <div className={styles.slideshowWrapper}>

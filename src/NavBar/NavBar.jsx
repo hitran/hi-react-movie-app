@@ -2,12 +2,25 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.scss';
 import { DataContext } from '../Context/Context';
-import Search from '../common/Search/Search';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {useHistory} from 'react-router-dom';
 const NavBar = (props) => {
     const [isScrolling, setIsScrolling] = useState(false);
+    const [search, setSearch] = useState('');
+    const history = useHistory();
     const dataContext = useContext(DataContext)
     const onChangeTheme = () => {
         dataContext.toggleTheme()
+    }
+    const onSearchChange = (e) => {
+        const query = e.target.value;
+        setSearch(query);
+        if (query.length > 5) {
+            props.searchMovies(query);
+            history.push('/search')
+        }
+        
     }
     const navBarRef = React.createRef();
     const onScroll = (el) => {
@@ -44,7 +57,10 @@ const NavBar = (props) => {
                 </ul>
                 <ul className={styles.pullRight}>
                     <li>
-                        <Search />
+                        <form className={styles.search}>
+                            <FontAwesomeIcon icon={faSearch} />
+                            <input type="text" value={search} onChange={onSearchChange} placeholder="search movie title..." />
+                        </form>
                     </li>
                 </ul>
             </div>

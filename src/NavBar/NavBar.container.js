@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import NavBar from './NavBar';
+import {searchMovies} from '../Search/Search.action';
 
 const mapStateToProps = (store) => ({
     load: store.wishListReducer.load,
@@ -7,6 +8,8 @@ const mapStateToProps = (store) => ({
     error: store.wishListReducer.error
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+    searchMovies
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Movies.module.scss';
 import { Link } from 'react-router-dom';
-import Movie from './Movie/Movie';
+import Movie from '../Movie/Movie';
 import Slideshow from '../common/Slideshow/Slideshow';
 
 export default function Movies(props) {

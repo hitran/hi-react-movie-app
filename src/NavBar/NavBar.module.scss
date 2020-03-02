@@ -40,3 +40,26 @@
         margin-left: 5px;
     }
 }
+
+.search {
+    svg {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    input {
+        background-color: transparent;
+        color: $white;
+        border: none;
+        padding: 10px;
+        font-size: 15px;
+        &:focus {
+            outline: none;
+        }
+    }
+    p {
+        color: $white;
+    }
+    div {
+        height: 200px;
+        overflow: scroll;
+    }
+}

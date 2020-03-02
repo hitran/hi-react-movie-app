@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import Movie from './Movie'
-import {gettingDataTestAttr} from '../../TestUtils/TestUtils';
+import {gettingDataTestAttr} from '../TestUtils/TestUtils';
 
 const setup = (props = {}) => {
     return shallow(<Movie {...props}/>)

@@ -5,6 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {store} from './App.store';
 import {Provider} from 'react-redux';
+import {firebaseInit} from './configurations/config';
+
+firebaseInit();
 ReactDOM.render(
     <Provider store={store}>
         <App />

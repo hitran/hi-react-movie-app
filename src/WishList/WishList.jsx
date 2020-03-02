@@ -3,7 +3,7 @@ import styles from './WishList.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { IMG_PATH } from '../configurations/config';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default function WishList(props) {
     const [search, setSearch] = useState('')
@@ -19,7 +19,7 @@ export default function WishList(props) {
             newWishList = data.map((movie, id) =>
                 (
                     <tr key={id}>
-                        <td onClick={() => goToMovieDetails(movie.id)} className={styles.desktopOnly}><img src={`${IMG_PATH}/${movie.poster_path}`} alt="movie poster" /></td>
+                        <td onClick={() => goToMovieDetails(movie.id)} className={styles.desktopOnly}><img src={`${IMG_PATH}/${movie.poster_path}`} alt="movie poster"/></td>
                         <td onClick={() => goToMovieDetails(movie.id)}>{movie.original_title}</td>
                         <td className={styles.desktopOnly}>{movie.runtime} mins</td>
                         <td className={styles.desktopOnly}>{movie.vote_average} / 10</td>

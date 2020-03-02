@@ -33,7 +33,7 @@ export default function Slideshow(props) {
                     {props.movies}
                 </div>
             </div>
-            <button className={styles.slideshowControls} disabled={leftPosition === -(slideshowWidth - 700)} onClick={() => updateLeftPosition('next')}>
+            <button className={styles.slideshowControls} disabled={leftPosition === -(slideshowWidth - 1000)} onClick={() => updateLeftPosition('next')}>
                 <FontAwesomeIcon icon={faChevronRight} />
             </button>
         </div>

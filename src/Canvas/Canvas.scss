@@ -1,3 +1,4 @@
+@import '../common/stylings/common_styling.scss';
 * {
     a {
         text-decoration: none;
@@ -6,12 +7,13 @@
 .Canvas {
     font-family: 'Lato', sans-serif;
     margin-top: 55px;
+    min-height: 100vh;
     &.Dark {
-        background-color: black;
+        background-color: #141414;
         transition: 0.5s ease-in-out;
-        color: white;
+        color: $white;
         a, p {
-            color: white;
+            color: $white;
         }
     }
     
@@ -22,5 +24,9 @@
         a, p {
             color: black;
         }
+    }
+    .pageHeader {
+        margin-left: 57px;
+        font-size: 23px;
     }
 }

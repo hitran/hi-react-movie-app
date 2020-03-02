@@ -10,19 +10,30 @@ const NavBar = (props) => {
     const [search, setSearch] = useState('');
     const history = useHistory();
     const dataContext = useContext(DataContext)
+
     const onChangeTheme = () => {
         dataContext.toggleTheme()
     }
+
     const onSearchChange = (e) => {
+        e.persist()
         const query = e.target.value;
         setSearch(query);
-        if (query.length > 5) {
-            props.searchMovies(query);
-            history.push('/search')
-        }
-        
     }
+
+    const handleKeyPress = (e) => {
+        e.persist()
+        let keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+            e.preventDefault();
+            props.searchMovies(search);
+            setTimeout(history.push('/search'), 5000);
+            setSearch('')
+        }
+    }
+
     const navBarRef = React.createRef();
+
     const onScroll = (el) => {
         if (el) {
             const rect = el.getBoundingClientRect();
@@ -33,9 +44,11 @@ const NavBar = (props) => {
             }
         }
     }
+
     useEffect(() => {
         window.addEventListener('scroll', () => onScroll(navBarRef.current))
     }, [navBarRef])
+
     return (
         <div className={styles.NavBar} ref={navBarRef}>
             <div>
@@ -44,22 +57,16 @@ const NavBar = (props) => {
                         <NavLink to="/">Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/">Popular</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/">Top Rated</NavLink>
-                    </li>
-                    <li>
                         <NavLink to="/my-wish-list">My Wish List
                         <span className={props.data.length > 0 ? styles.notification : ''}>{props.data.length > 0 ? props.data.length : null}</span></NavLink>
                     </li>
-                    <li><button className={styles.changeTheme} onClick={onChangeTheme}>Change Theme</button></li>
+                    {/* <li><button className={styles.changeTheme} onClick={onChangeTheme}>Change Theme</button></li> */}
                 </ul>
                 <ul className={styles.pullRight}>
                     <li>
                         <form className={styles.search}>
                             <FontAwesomeIcon icon={faSearch} />
-                            <input type="text" value={search} onChange={onSearchChange} placeholder="search movie title..." />
+                            <input type="text" value={search} onKeyPress={handleKeyPress} onChange={onSearchChange} placeholder="search movie title..." />
                         </form>
                     </li>
                 </ul>

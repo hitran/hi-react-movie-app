@@ -15,12 +15,6 @@ export default function Movies(props) {
         }
     }, [])
 
-    const onLoadingMore = () => {
-        setCurrentPage(currentPage + 1)
-        props.getPopularMoviesList(props.data, currentPage + 1);
-        // loading more for top rated & latest movies
-    }
-
     if (props.data) {
         const data = {...props.data}
         popularMovies = data.popularMovies.map((movie, i) => (
@@ -39,12 +33,10 @@ export default function Movies(props) {
 
     return (
         <div>
-            <h1>Popular</h1>
+            <h1 className="pageHeader">Popular</h1>
             <Slideshow movies={popularMovies} />
-            <button className={styles.loadMore} onClick={onLoadingMore}>View More</button>
-            <h1>Top Rated</h1>
+            <h1 className="pageHeader">Top Rated</h1>
             <Slideshow movies={topRatedMovies} />
-            <button className={styles.loadMore} onClick={onLoadingMore}>View More</button>
         </div>
     )
 }

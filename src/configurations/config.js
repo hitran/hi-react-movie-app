@@ -12,7 +12,7 @@ const instance = axios.create({
 })
 
 // FIREBASE CONFIG
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyByVArpoPwURfJrGgiO00eAB1J3TxfJWBI",
     authDomain: "hi-reactjs-movie-app.firebaseapp.com",
     databaseURL: "https://hi-reactjs-movie-app.firebaseio.com",
@@ -23,6 +23,7 @@ var firebaseConfig = {
     measurementId: "G-YBDZBSEQ52"
 };
 
+export const provider = new firebase.auth.GoogleAuthProvider();
 export function firebaseInit() {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);

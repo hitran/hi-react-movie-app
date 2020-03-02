@@ -69,6 +69,9 @@ const NavBar = (props) => {
                             <input type="text" value={search} onKeyPress={handleKeyPress} onChange={onSearchChange} placeholder="search movie title..." />
                         </form>
                     </li>
+                    <li>
+                        <NavLink to="/login">Login</NavLink>
+                    </li>
                 </ul>
             </div>
         </div>

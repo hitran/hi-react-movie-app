@@ -1,14 +1,18 @@
 import axios from 'axios';
 import firebase from 'firebase';
 
-// GENERAL CONFIGS
+// GENERAL CONFIG
 export const API_KEY = 'api_key=033a318c330ec85a33f301d55b8d8ab1';
 export const IMG_PATH = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2';
 export const BACKDROP_PATH = 'https://image.tmdb.org/t/p/original';
 
 // AXIOS CONFIG
-const instance = axios.create({
+export const axiosMovieDBInstance = axios.create({
     baseURL: 'https://api.themoviedb.org/3'
+})
+
+export const axiosFirebaseInstance = axios.create({
+    baseURL : 'https://hi-reactjs-movie-app.firebaseio.com/'
 })
 
 // FIREBASE CONFIG
@@ -30,4 +34,3 @@ export function firebaseInit() {
     firebase.analytics();
 }
 
-export default instance;

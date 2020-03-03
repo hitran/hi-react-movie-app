@@ -8,15 +8,15 @@ import { useHistory } from 'react-router-dom';
 export default function WishList(props) {
     const [search, setSearch] = useState('')
     const [wishList, setWishList] = useState([]);
-    const data = [...props.data];
+    const data = {...props.data};
     const history = useHistory();
     const goToMovieDetails = (id) => {
         setTimeout(history.push(`/movie/${id}`), 3000);
     }
     const getWishList = (data) => {
         let newWishList = [];
-        if (data.length > 0) {
-            newWishList = data.map((movie, id) =>
+        if (data && data.wishList && data.wishList.length > 0) {
+            newWishList = data.wishList.map((movie, id) =>
                 (
                     <tr key={id}>
                         <td onClick={() => goToMovieDetails(movie.id)} className={styles.desktopOnly}><img src={`${IMG_PATH}/${movie.poster_path}`} alt="movie poster"/></td>
@@ -30,16 +30,16 @@ export default function WishList(props) {
         setWishList(newWishList);
     }
     const removeFromWishList = (id) => {
-        if (data.length > 0) {
-            data.splice(id, 1);
-            props.removeFromWishList(data)
+        if (data.wishList && data.wishList.length > 0) {
+            data.wishList.splice(id, 1);
+            props.updateUserInfo(data)
         }
         getWishList(data)
     }
     const onSearchChange = (e) => {
         const query = e.target.value;
         setSearch(query);
-        const filteredWishList = data.filter(movie => movie.original_title.toLowerCase().includes(query.toLowerCase()));
+        const filteredWishList = data.wishList.filter(movie => movie.original_title.toLowerCase().includes(query.toLowerCase()));
         let newWishList = []
         if (filteredWishList.length > 0) {
             newWishList = filteredWishList.map((movie, id) =>
@@ -51,7 +51,6 @@ export default function WishList(props) {
                         <td className={styles.desktopOnly}>{movie.vote_average} / 10</td>
                         <td><a onClick={() => removeFromWishList(id)}><FontAwesomeIcon icon={faTrash} /></a></td>
                     </tr>
-
                 ))
         } else {
             newWishList.push(<tr key="0">
@@ -65,8 +64,9 @@ export default function WishList(props) {
         setWishList(newWishList);
     }
     useEffect(() => {
-        getWishList(data)
-    }, [])
+        // get default wish list from user info once signed in
+        getWishList(props.data)
+    }, [props.data])
 
 
     return (

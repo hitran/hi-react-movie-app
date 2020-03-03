@@ -3,10 +3,9 @@ import NavBar from './NavBar';
 import {searchMovies} from '../Search/Search.action';
 
 const mapStateToProps = (store) => ({
-    load: store.wishListReducer.load,
-    data: store.wishListReducer.data,
-    error: store.wishListReducer.error,
-    login: store.loginReducer.data
+    load: store.loginReducer.load,
+    data: store.loginReducer.data,
+    error: store.loginReducer.error
 })
 
 const mapDispatchToProps = {

@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import styles from './MovieDetails.module.scss';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { IMG_PATH, BACKDROP_PATH } from '../configurations/config';
 
 export default function MovieDetails(props) {
     const [addedToWishList, setAddedToWishList] = useState(false);
     const params = useParams();
+    const history = useHistory();
     useEffect(() => {
         props.getMovieDetails(params.movieId);
-        if (props.wishList.length > 0) {
-            const i = props.wishList.findIndex(movie => movie.id === parseInt(params.movieId, 10));
+        if (props.user && props.user.wishList && props.user.wishList.length > 0) {
+            const i = props.user.wishList.findIndex(movie => movie.id === parseInt(params.movieId, 10));
+            
             if (i !== -1) {
                 setAddedToWishList(true);
             }
-        }
+        } 
     }, [params.movieId])
 
     // Generate random color for movie genres
@@ -32,8 +34,20 @@ export default function MovieDetails(props) {
 
     // Add to wish list
     const addToWishList = (data) => {
-        const newWishList = [...props.wishList, data]
-        props.addToWishList(newWishList);
+        const user = {...props.user};
+        let newWishList = [];
+        if (props.user && props.user.wishList) {
+            newWishList = [...user.wishList, data];
+        } else {
+
+            history.push('/login');
+        }
+        
+        if (user) {
+            user.wishList = newWishList;
+        } 
+        // get the latest update from db
+        props.updateUserInfo(user);
         setAddedToWishList(true)
     }
 

@@ -1,4 +1,4 @@
-import axios, {API_KEY} from "../configurations/config";
+import {API_KEY, axiosMovieDBInstance} from "../configurations/config";
 
 export const SEARCH_REQUEST_ACTION = 'SEARCH_REQUEST_ACTION';
 export const SEARCH_SUCCESS_ACTION = 'SEARCH_SUCCESS_ACTION';
@@ -29,7 +29,7 @@ export const searchMovies  = (query) => {
     return async (dispatch) =>  {
         dispatch(searchRequestAction());
         try {
-            const searchResult = await axios({
+            const searchResult = await axiosMovieDBInstance({
                 method: 'GET',
                 url: `/search/movie/?${API_KEY}&query=${query}`
             })

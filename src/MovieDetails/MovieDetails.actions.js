@@ -1,4 +1,4 @@
-import axios, {API_KEY} from '../configurations/config';
+import {API_KEY, axiosMovieDBInstance} from '../configurations/config';
 export const MOVIE_DETAILS_REQUEST_ACTION = 'MOVIE_DETAILS_REQUEST_ACTION';
 export const MOVIE_DETAILS_SUCCESS_ACTION = 'MOVIE_DETAILS_SUCCESS_ACTION';
 export const MOVIE_DETAILS_FAIL_ACTION = 'MOVIE_DETAILS_FAIL_ACTION';
@@ -27,7 +27,7 @@ export const getMovieDetails = (movieId) => {
     return async(dispatch) => {
         dispatch(movieDetailsRequestAction());
         try {
-            const result = await axios({
+            const result = await axiosMovieDBInstance({
                 method: 'GET',
                 url: `/movie/${movieId}?${API_KEY}`
             });

@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { provider } from '../configurations/config';
+import { provider, axiosFirebaseInstance } from '../configurations/config';
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -30,22 +30,42 @@ export const login = () => {
         dispatch(loginRequestAction());
         try {
             const result = await firebase.auth().signInWithPopup(provider);
-            console.log(result);
             if (result.credential.accessToken) {
-                const user = {
-                    name: result.user.displayName,
-                    photo: result.user.photo
+                let user = {};
+                // check if current user id already exists in db
+                let data = await axiosFirebaseInstance({
+                    method: 'GET',
+                    url: `users/${result.user.uid}.json`
+                })
+                
+                if (!data.data) {
+                    // user hasn't been created in db: add new user
+                    user = {
+                        name: result.user.displayName,
+                        photo: result.user.photoURL,
+                        userId: result.user.uid,
+                        wishList: null
+                    }
+                    await axiosFirebaseInstance({
+                        method: 'POST',
+                        url: `users/${user.userId}.json`,
+                        data: user
+                    })
+                } else {
+                    // retrieve user info from db
+                    user = Object.values(data)[0]
                 }
+                console.log(user);
                 dispatch(loginSuccessAction(user));
             }
-        } catch(error) {
+        } catch (error) {
             dispatch(loginFailAction(error));
         }
     }
 }
 
 export const logout = () => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         dispatch(loginRequestAction());
         try {
             const result = await firebase.auth().signOut();
@@ -54,6 +74,22 @@ export const logout = () => {
             }
         } catch (error) {
             dispatch(loginFailAction(error));
+        }
+    }
+}
+
+export const updateUserInfo = (data) => {
+    return async(dispatch) => {
+        dispatch(loginRequestAction())
+        try {
+            const update = await axiosFirebaseInstance({
+                method: 'PUT',
+                url: `users/${data.userId}.json`,
+                data: data
+            })
+            dispatch(loginSuccessAction(data))
+        } catch(error) {
+            dispatch(loginFailAction(error))
         }
     }
 }

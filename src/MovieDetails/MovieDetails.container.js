@@ -1,19 +1,18 @@
 import {connect} from 'react-redux';
 import MovieDetails from './MovieDetails';
 import {getMovieDetails} from './MovieDetails.actions';
-import {addToWishList} from '../WishList/WishList.action';
+import {updateUserInfo} from '../Login/Login.action';
 
 const mapStateToProps = (store) => ({
     load: store.movieDetailsReducer.load,
     data: store.movieDetailsReducer.data,
     error: store.movieDetailsReducer.error,
-    wishList: store.wishListReducer.data,
-    wishListLoad: store.wishListReducer.load
+    user: store.loginReducer.data
 })
 
 const mapDispatchToProps =  {
     getMovieDetails,
-    addToWishList
+    updateUserInfo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails)

@@ -1,4 +1,4 @@
-import axios, {API_KEY} from '../configurations/config';
+import {API_KEY, axiosMovieDBInstance} from '../configurations/config';
 
 export const MOVIES_REQUEST_ACTION = 'MOVIES_REQUEST_ACTION';
 export const MOVIES_SUCCESS_ACTION = 'MOVIES_SUCCESS_ACTION';
@@ -30,11 +30,11 @@ export const getMoviesList = (currentData, page = 1) => {
         dispatch(moviesRequestAction())
         try {
             const data = {...currentData};
-            const popularResult = await axios({
+            const popularResult = await axiosMovieDBInstance({
                 method: "GET",
                 url: `/movie/popular?${API_KEY}&page=${page}`
             })
-            const topRatedResult = await axios({
+            const topRatedResult = await axiosMovieDBInstance({
                 method: "GET",
                 url: `/movie/top_rated?${API_KEY}&page=${page}`
             })

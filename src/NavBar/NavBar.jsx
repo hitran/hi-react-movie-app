@@ -5,6 +5,8 @@ import { DataContext } from '../Context/Context';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {useHistory} from 'react-router-dom';
+
+
 const NavBar = (props) => {
     const [isScrolling, setIsScrolling] = useState(false);
     const [search, setSearch] = useState('');
@@ -58,7 +60,7 @@ const NavBar = (props) => {
                     </li>
                     <li>
                         <NavLink to="/my-wish-list">My Wish List
-                        <span className={props.data.length > 0 ? styles.notification : ''}>{props.data.length > 0 ? props.data.length : null}</span></NavLink>
+                        {/* <span className={props.data && props.data.wishList.length > 0 ? styles.notification : ''}>{props.data.wishList.length > 0 ? props.data.length : null}</span>*/}</NavLink>
                     </li>
                     {/* <li><button className={styles.changeTheme} onClick={onChangeTheme}>Change Theme</button></li> */}
                 </ul>

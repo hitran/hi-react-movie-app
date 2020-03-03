@@ -55,7 +55,6 @@ export const login = () => {
                     // retrieve user info from db
                     user = Object.values(data)[0]
                 }
-                console.log(user);
                 dispatch(loginSuccessAction(user));
             }
         } catch (error) {
@@ -82,7 +81,7 @@ export const updateUserInfo = (data) => {
     return async(dispatch) => {
         dispatch(loginRequestAction())
         try {
-            const update = await axiosFirebaseInstance({
+            await axiosFirebaseInstance({
                 method: 'PUT',
                 url: `users/${data.userId}.json`,
                 data: data

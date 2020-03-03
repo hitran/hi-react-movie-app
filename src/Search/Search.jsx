@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import MoviesGrid from '../common/MoviesGrid/MoviesGrid';
 
 export default function Search(props){

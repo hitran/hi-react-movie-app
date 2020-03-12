@@ -5,3 +5,25 @@
     margin: 20px auto;
     font-size: 15px;
 }
+
+.mainPoster {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    position: relative;
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.3);
+    }
+}
+
+.mainPosterInfo {
+    color: white;
+}

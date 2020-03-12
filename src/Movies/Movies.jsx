@@ -3,40 +3,51 @@ import styles from './Movies.module.scss';
 import { Link } from 'react-router-dom';
 import Movie from '../Movie/Movie';
 import Slideshow from '../common/Slideshow/Slideshow';
+import { BACKDROP_PATH } from '../configurations/config';
 
 export default function Movies(props) {
-    const [currentPage, setCurrentPage] = useState(1);
-    let popularMovies = [];
-    let topRatedMovies = [];
+    const [topRatedMovie, setTopRatedMovie] = useState({});
+    const [topRatedMovieList, setTopRatedMovieList] = useState([]);
+    const [popularMovieList, setPopularMovieList] = useState([])
 
-    useEffect(() => {
-        if (props.data) {
-            props.getMoviesList(props.data, currentPage);
-        }
-    }, [])
-
-    if (props.data) {
-        const data = {...props.data}
-        popularMovies = data.popularMovies.map((movie, i) => (
-            <Link key={i} to={`/movie/${movie.id}`}>
-                <Movie {...movie} />
-            </Link>
-        ))
-
-        // update top rated movies here
-        topRatedMovies = data.topRatedMovies.map((movie, i) => (
-            <Link key={i} to={`/movie/${movie.id}`}>
-                <Movie {...movie} />
-            </Link>
-        ))
+    const generateRandomNumber = () => {
+        return Math.floor(Math.random() * 10);
     }
+    useEffect(() => {
+        props.getMoviesList();
+        if (props.data) {
+            setTopRatedMovie(props.data.topRatedMovies[generateRandomNumber()])
+            const popularMovies = props.data.popularMovies.map((movie, i) => (
+                <Link key={i} to={`/movie/${movie.id}`}>
+                    <Movie {...movie} />
+                </Link>
+            ))
+            setPopularMovieList(popularMovies)
+
+            // update top rated movies here
+            const topRatedMovies = props.data.topRatedMovies.map((movie, i) => (
+                <Link key={i} to={`/movie/${movie.id}`}>
+                    <Movie {...movie} />
+                </Link>
+            ))
+            setTopRatedMovieList(topRatedMovies)
+        }
+    }, [props.data.topRatedMovies.length])
 
     return (
         <div>
+            {topRatedMovie ?
+                <div className={styles.mainPoster} style={{backgroundImage: `url(${BACKDROP_PATH}/${topRatedMovie.backdrop_path})`}}>
+                    <div className={styles.mainPosterInfo}>
+                        <h3>{topRatedMovie.original_title}</h3>
+                    </div>
+                </div>
+                : null
+            }
             <h1 className="pageHeader">Popular</h1>
-            <Slideshow movies={popularMovies} />
+            <Slideshow movies={topRatedMovieList} />
             <h1 className="pageHeader">Top Rated</h1>
-            <Slideshow movies={topRatedMovies} />
+            <Slideshow movies={popularMovieList} />
         </div>
     )
 }

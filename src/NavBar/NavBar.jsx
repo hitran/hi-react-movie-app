@@ -5,6 +5,7 @@ import { DataContext } from '../Context/Context';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {useHistory} from 'react-router-dom';
+import {Badge} from 'antd';
 
 
 const NavBar = (props) => {
@@ -56,13 +57,18 @@ const NavBar = (props) => {
             <div>
                 <ul className={isScrolling ? styles.onScroll : ''}>
                     <li>
-                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/"><img className={styles.logo} src="https://www.themoviedb.org/assets/2/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg"/></NavLink>
                     </li>
                     <li>
+                    <Badge dot>
                         <NavLink to="/my-wish-list">My Wish List
                         {/* <span className={props.data && props.data.wishList.length > 0 ? styles.notification : ''}>{props.data.wishList.length > 0 ? props.data.length : null}</span>*/}</NavLink>
+                    </Badge>
                     </li>
                     {/* <li><button className={styles.changeTheme} onClick={onChangeTheme}>Change Theme</button></li> */}
+                    <li>
+                        <NavLink to="/documentation">Documentation</NavLink>
+                    </li>
                 </ul>
                 <ul className={styles.pullRight}>
                     <li>

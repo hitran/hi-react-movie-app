@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from './Login.module.scss';
+import googleBtn from '../assets/btn_google_light_normal.png';
 
 export default function Login(props) {
     const onLogin = async () => {
@@ -10,9 +12,12 @@ export default function Login(props) {
     }
 
     return (
-        <div>
-            <div>This is login page</div>
-            {props.data ? <button onClick={onLogout}>Logout</button> : <button onClick={onLogin}>Login</button>}
+        <div className={styles.signInWrapper}>
+            <img className={styles.logo} src="https://www.themoviedb.org/assets/2/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg"/>
+            <h3>The Movie DB</h3>
+            <form>
+            </form>
+            {props.data ? <button onClick={onLogout}>Logout</button> : <img onClick={onLogin} className ={styles.loginButton} src={googleBtn} alt="sign_in_button"/>}
         </div>
     )
 }

@@ -25,19 +25,20 @@ const moviesFailAction = (error) => {
     })
 }
 
-export const getMoviesList = (currentData, page = 1) => {
+export const getMoviesList = () => {
     return async(dispatch) => {
         dispatch(moviesRequestAction())
         try {
-            const data = {...currentData};
+            const data = {};
             const popularResult = await axiosMovieDBInstance({
                 method: "GET",
-                url: `/movie/popular?${API_KEY}&page=${page}`
+                url: `/movie/popular?${API_KEY}&page=1`
             })
             const topRatedResult = await axiosMovieDBInstance({
                 method: "GET",
-                url: `/movie/top_rated?${API_KEY}&page=${page}`
+                url: `/movie/upcoming/?${API_KEY}&page=1`
             })
+
             data.popularMovies = popularResult.data.results;
             data.topRatedMovies = topRatedResult.data.results;
             dispatch(moviesSuccessAction(data));

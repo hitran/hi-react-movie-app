@@ -6,7 +6,6 @@ const initialState = {
     data: {
         popularMovies: [],
         topRatedMovies: []
-        
     },
     error: null
 }

@@ -12,6 +12,9 @@
     margin: 0;
     z-index: 2;
     height: 55px;
+    .logo {
+        width: 45px;
+    }
     &.onScroll {
         background-color: rgba(20,20,20, 1);
     }

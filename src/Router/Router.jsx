@@ -7,6 +7,7 @@ const Login = React.lazy(() => import('../Login/Login.container'));
 const MovieDetails = React.lazy(() => import('../MovieDetails/MovieDetails.container'));
 const WishList = React.lazy(() => import('../WishList/WishList.container'));
 const Search = React.lazy(() => import('../Search/Search.container'));
+const Documentation = React.lazy(() => import('../Documentation/Documentation'));
 
 export default function router() {
     return(
@@ -26,6 +27,9 @@ export default function router() {
             </Route>
             <Route path="/search">
                 <Search/>
+            </Route>
+            <Route path="/documentation">
+                <Documentation/>
             </Route>
         </Switch>
         </React.Suspense>

@@ -1,7 +1,8 @@
 import React from 'react';
+import { Spin } from 'antd';
 
 export default function loader() {
     return(
-        <div>loading...</div>
+        <Spin>loading...</Spin>
     )
 }

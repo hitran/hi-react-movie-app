@@ -66,9 +66,9 @@ const NavBar = (props) => {
                     </Badge>
                     </li>
                     {/* <li><button className={styles.changeTheme} onClick={onChangeTheme}>Change Theme</button></li> */}
-                    <li>
+                    {/* <li>
                         <NavLink to="/documentation">Documentation</NavLink>
-                    </li>
+                    </li> */}
                 </ul>
                 <ul className={styles.pullRight}>
                     <li>

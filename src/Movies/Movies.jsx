@@ -8,10 +8,20 @@ import { BACKDROP_PATH } from '../configurations/config';
 export default function Movies(props) {
     const [topRatedMovie, setTopRatedMovie] = useState({});
     const [topRatedMovieList, setTopRatedMovieList] = useState([]);
-    const [popularMovieList, setPopularMovieList] = useState([])
+    const [popularMovieList, setPopularMovieList] = useState([]);
 
     const generateRandomNumber = () => {
         return Math.floor(Math.random() * 10);
+    }
+    const truncateText = (text) => {
+        if (text) {
+            const words = text.split(' ');
+            if (words.length > 30) {
+                return words.slice(0, 30).join(' ') + '...'
+            } else {
+                return text
+            }
+        }
     }
     useEffect(() => {
         props.getMoviesList();
@@ -37,9 +47,11 @@ export default function Movies(props) {
     return (
         <div>
             {topRatedMovie ?
-                <div className={styles.mainPoster} style={{backgroundImage: `url(${BACKDROP_PATH}/${topRatedMovie.backdrop_path})`}}>
+                <div className={styles.mainPoster} style={{ backgroundImage: `url(${BACKDROP_PATH}/${topRatedMovie.backdrop_path})` }}>
                     <div className={styles.mainPosterInfo}>
-                        <h3>{topRatedMovie.original_title}</h3>
+                        <h1>{topRatedMovie.original_title}</h1>
+                        <p>{truncateText(topRatedMovie.overview)}</p>
+                        <button>View More</button>
                     </div>
                 </div>
                 : null

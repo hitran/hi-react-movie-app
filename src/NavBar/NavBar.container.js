@@ -5,7 +5,7 @@ import {searchMovies} from '../Search/Search.action';
 const mapStateToProps = (store) => ({
     load: store.loginReducer.load,
     data: store.loginReducer.data,
-    error: store.loginReducer.error
+    error: store.loginReducer.error,
 })
 
 const mapDispatchToProps = {

@@ -95,7 +95,7 @@ export default function WishList(props) {
                 </table>
             </div> :
             <div className={styles.wishListWrapper}>
-                <h1>Your Wish List</h1>
+                <h1 className={styles.title}>Your Wish List</h1>
                 <p>YOUR WISH LIST IS EMPTY!</p>
             </div>
     )

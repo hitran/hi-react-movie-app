@@ -15,9 +15,7 @@ export default function Login(props) {
         <div className={styles.signInWrapper}>
             <img className={styles.logo} src="https://www.themoviedb.org/assets/2/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg"/>
             <h3>The Movie DB</h3>
-            <form>
-            </form>
-            {props.data ? <button onClick={onLogout}>Logout</button> : <img onClick={onLogin} className ={styles.loginButton} src={googleBtn} alt="sign_in_button"/>}
+            {props.data ? <button className={styles.logoutButton} onClick={onLogout}>Logout</button> : <div onClick={onLogin} className ={styles.loginButton} alt="sign_in_button"></div>}
         </div>
     )
 }

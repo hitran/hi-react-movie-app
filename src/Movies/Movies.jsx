@@ -51,7 +51,7 @@ export default function Movies(props) {
                     <div className={styles.mainPosterInfo}>
                         <h1>{topRatedMovie.original_title}</h1>
                         <p>{truncateText(topRatedMovie.overview)}</p>
-                        <button>View More</button>
+                        <button><Link to={`/movie/${topRatedMovie.id}`}>View More</Link></button>
                     </div>
                 </div>
                 : null

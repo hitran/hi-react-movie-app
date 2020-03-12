@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Router from './Router/Router';
 import Canvas from './Canvas/Canvas';
 import Context from './Context/Context';
+import Footer from './Footer/Footer';
 import './App.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Canvas>
             <Router />
           </Canvas>
+          <Footer/>
         </Context>
       </div>
     </BrowserRouter>
